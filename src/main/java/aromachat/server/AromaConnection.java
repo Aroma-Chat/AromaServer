@@ -177,7 +177,7 @@ public class AromaConnection {
         // Get the channel
         if ((this.textChannel = AromaServer.getInstance()
                                             .getTextChannels()
-                                            .get(channelName)) == null) {
+                                             .get(channelName)) == null) {
             throw new RuntimeException(new NullPointerException("No such text channel " + channelName));
         }
 
