@@ -105,8 +105,8 @@ public class AromaConnection {
                                                             method -> {
                                                                 // Forward the message to the right handler
                                                                 if (method.getAnnotation(AromaEvent.class)
-                                                                            .value()
-                                                                             .equals(message.get(AromaProtocol.Packet.TYPE)
+                                                                           .value()
+                                                                            .equals(message.get(AromaProtocol.Packet.TYPE)
                                                                                                 .getAsString())) {
                                                                     try { method.invoke(this, message); }
                                                                     catch (IllegalAccessException iae) {
