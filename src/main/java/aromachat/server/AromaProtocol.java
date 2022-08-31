@@ -10,9 +10,9 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public final class AromaProtocol {
-    public static final String VERSION = "0.0.4";
+    public static final String VERSION = "0.0.3";
     public static final String PATH = "/aromachat/chat";
-    public static final int DEFAULT_PORT = 80;
+    public static final int DEFAULT_PORT = 1989;
 
     public static class Event {
         public static final String LOGIN = "login";
