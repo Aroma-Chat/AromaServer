@@ -102,21 +102,21 @@ public class AromaConnection {
     public void onMessage(Session session, JsonObject message) {
         // Forward the message to the right event listener
         new ObjectUtility(this).forEachMethodWithAnnotation(AromaEvent.class,
-                                                               method -> {
-                                                                    // Forward the message to the right handler
-                                                                    if (method.getAnnotation(AromaEvent.class)
-                                                                               .value()
-                                                                                .equals(message.get(AromaProtocol.Packet.TYPE)
+                                                            method -> {
+                                                                // Forward the message to the right handler
+                                                                if (method.getAnnotation(AromaEvent.class)
+                                                                            .value()
+                                                                             .equals(message.get(AromaProtocol.Packet.TYPE)
                                                                                                 .getAsString())) {
-                                                                        try { method.invoke(this, message); }
-                                                                        catch (IllegalAccessException iae) {
-                                                                            throw new RuntimeException(iae);
-                                                                        }
-                                                                        catch (InvocationTargetException ite) {
-                                                                            throw new RuntimeException(ite.getCause());
-                                                                        }
+                                                                    try { method.invoke(this, message); }
+                                                                    catch (IllegalAccessException iae) {
+                                                                        throw new RuntimeException(iae);
                                                                     }
-                                                               });
+                                                                    catch (InvocationTargetException ite) {
+                                                                        throw new RuntimeException(ite.getCause());
+                                                                    }
+                                                                }
+                                                            });
     }
 
     /**
