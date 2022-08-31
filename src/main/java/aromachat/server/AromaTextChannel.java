@@ -89,4 +89,9 @@ public final class AromaTextChannel {
     public List<Object> getMessages() {
         return this.messages;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

@@ -39,8 +39,6 @@ public final class AromaServer {
         // Update text channels
         AromaServer.getConfiguration()
                     .getTextChannelNames()
-                     .stream()
-                     .parallel()
                      .forEach(channel -> this.textChannels.put(channel,
                                                                new AromaTextChannel(channel)));
     }
