@@ -109,9 +109,11 @@ public class AromaConnection {
                                                                                 .equals(message.get(AromaProtocol.Packet.TYPE)
                                                                                                 .getAsString())) {
                                                                         try { method.invoke(this, message); }
-                                                                        catch (IllegalAccessException |
-                                                                                 InvocationTargetException e) {
-                                                                            throw new RuntimeException(e);
+                                                                        catch (IllegalAccessException iae) {
+                                                                            throw new RuntimeException(iae);
+                                                                        }
+                                                                        catch (InvocationTargetException ite) {
+                                                                            throw new RuntimeException(ite.getCause());
                                                                         }
                                                                     }
                                                                });
@@ -172,8 +174,12 @@ public class AromaConnection {
             this.textChannel.leave(this);
         }
 
+        // Get the channel
+        if ((this.textChannel = AromaServer.getInstance().getTextChannels().get(channelName)) == null) {
+            throw new RuntimeException("No such channel " + channelName);
+        }
+
         // Join the requested channel
-        this.textChannel = AromaServer.getInstance().getTextChannels().get(channelName);
         this.textChannel.join(this);
 
         // Send confirmation reply
